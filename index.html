@@ -22,6 +22,16 @@
   --serif:'Fraunces',serif;
   --sans:'Inter',sans-serif;
   --maxw:880px;
+
+  /* Dark mode colors */
+  --dark-bg:#171513;
+  --dark-surface:#211e1b;
+  --dark-border:#3b352f;
+  --dark-text:#f4eee6;
+  --dark-text-dim:#bdb3a7;
+  --dark-text-dimmer:#82786c;
+  --dark-accent:#d17a5e;
+  --dark-accent-soft:#3a2922;
 }
 
 *{
@@ -672,6 +682,88 @@ footer p{
   }
 }
 
+
+/* =========================
+   Light / Night mode
+   ========================= */
+html{
+  transition:background-color .3s ease,color .3s ease;
+}
+
+body,
+header.nav,
+.portrait-frame,
+.tag,
+.btn,
+.cert-row,
+.timeline::before,
+.fact,
+.proj-item{
+  transition:
+    background-color .3s ease,
+    color .3s ease,
+    border-color .3s ease;
+}
+
+.theme-toggle{
+  border:1px solid var(--border);
+  background:var(--surface);
+  color:var(--text);
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  font-size:18px;
+  line-height:1;
+  transition:
+    transform .2s ease,
+    background-color .3s ease,
+    color .3s ease,
+    border-color .3s ease;
+}
+
+.theme-toggle:hover{
+  transform:rotate(15deg) scale(1.05);
+  border-color:var(--accent);
+  color:var(--accent);
+}
+
+.theme-toggle:active{
+  transform:scale(.95);
+}
+
+/* Night mode */
+html.dark-mode{
+  --bg:var(--dark-bg);
+  --surface:var(--dark-surface);
+  --border:var(--dark-border);
+  --text:var(--dark-text);
+  --text-dim:var(--dark-text-dim);
+  --text-dimmer:var(--dark-text-dimmer);
+  --accent:var(--dark-accent);
+  --accent-soft:var(--dark-accent-soft);
+}
+
+html.dark-mode header.nav{
+  background:rgba(23,21,19,.9);
+}
+
+html.dark-mode .btn.primary{
+  background:var(--text);
+  color:var(--bg);
+}
+
+html.dark-mode .cert-row:hover{
+  background:rgba(58,41,34,.45);
+}
+
+html.dark-mode .theme-toggle{
+  box-shadow:0 4px 14px rgba(0,0,0,.2);
+}
+
 @media (max-width:700px){
   .about-grid{
     grid-template-columns:1fr;
@@ -682,6 +774,11 @@ footer p{
   .nav-inner{
     flex-direction:column;
     gap:15px;
+  }
+
+  .theme-toggle{
+    width:38px;
+    height:38px;
   }
 
   .nav-links{
@@ -750,6 +847,13 @@ footer p{
       <a href="#timeline">Timeline</a>
       <a href="#contact">Contact</a>
     </nav>
+
+    <button class="theme-toggle" id="themeToggle"
+            type="button"
+            aria-label="Switch to night mode"
+            title="Switch to night mode">
+      ☾
+    </button>
   </div>
 </header>
 
@@ -1109,6 +1213,36 @@ footer p{
 </footer>
 
 <script>
+/* Light / Night mode toggle */
+const themeToggle = document.getElementById('themeToggle');
+const savedTheme = localStorage.getItem('portfolio-theme');
+
+if(savedTheme === 'dark'){
+  document.documentElement.classList.add('dark-mode');
+}
+
+function updateThemeButton(){
+  const isDark = document.documentElement.classList.contains('dark-mode');
+
+  themeToggle.textContent = isDark ? '☀' : '☾';
+  themeToggle.setAttribute(
+    'aria-label',
+    isDark ? 'Switch to light mode' : 'Switch to night mode'
+  );
+  themeToggle.setAttribute(
+    'title',
+    isDark ? 'Switch to light mode' : 'Switch to night mode'
+  );
+}
+
+themeToggle.addEventListener('click',()=>{
+  const isDark = document.documentElement.classList.toggle('dark-mode');
+  localStorage.setItem('portfolio-theme',isDark ? 'dark' : 'light');
+  updateThemeButton();
+});
+
+updateThemeButton();
+
 document.getElementById('date').textContent=new Date().toLocaleDateString('en-US',{
   year:'numeric',
   month:'short',
