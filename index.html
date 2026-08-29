@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vidarshana Basnayaka — Computer Science Undergraduate | Aspiring Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#faf7f2;
+  --surface:#ffffff;
+  --border:#e5ded2;
+  --text:#241f1a;
+  --text-dim:#6f6659;
+  --text-dimmer:#a89e8e;
+  --accent:#9a4b36;
+  --accent-soft:#f1e2da;
+  --green:#4b6455;
+  --serif:'Fraunces',serif;
+  --sans:'Inter',sans-serif;
+  --maxw:880px;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:85px;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+
+a{
+  color:inherit;
+}
+
+::selection{
+  background:var(--accent-soft);
+  color:var(--accent);
+}
+
+:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:3px;
+}
+
+.wrap{
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding:0 28px;
+}
+
+.num{
+  font-family:var(--sans);
+  font-size:12px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--accent);
+  font-weight:600;
+}
+
+.rule{
+  border:none;
+  border-top:1px solid var(--border);
+  margin:0;
+}
+
+header.nav{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(250,247,242,.9);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border);
+}
+
+.nav-inner{
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding:20px 28px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.brand{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:19px;
+}
+
+.nav-links{
+  display:flex;
+  gap:26px;
+  font-size:13px;
+  color:var(--text-dim);
+}
+
+.nav-links a{
+  position:relative;
+  text-decoration:none;
+  transition:color .2s ease;
+}
+
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-5px;
+  width:0;
+  height:1px;
+  background:var(--accent);
+  transition:width .25s ease;
+}
+
+.nav-links a:hover{
+  color:var(--accent);
+}
+
+.nav-links a:hover::after{
+  width:100%;
+}
+
+.hero{
+  padding:90px 0 70px;
+}
+
+.hero .num{
+  display:block;
+  margin-bottom:18px;
+  opacity:0;
+  animation:fadeDown .7s ease forwards;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1fr 180px;
+  gap:40px;
+  align-items:center;
+}
+
+.hero h1{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:clamp(38px,6vw,62px);
+  line-height:1.05;
+  margin-bottom:20px;
+  opacity:0;
+  animation:fadeUp .8s ease .15s forwards;
+}
+
+.hero h1 em{
+  font-style:italic;
+  color:var(--accent);
+}
+
+.hero p{
+  color:var(--text-dim);
+  font-size:17px;
+  max-width:480px;
+  margin-bottom:30px;
+  opacity:0;
+  animation:fadeUp .8s ease .3s forwards;
+}
+
+.hero-ctas{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  opacity:0;
+  animation:fadeUp .8s ease .45s forwards;
+}
+
+.btn{
+  font-size:13.5px;
+  font-weight:600;
+  padding:12px 22px;
+  border-radius:2px;
+  border:1px solid var(--text);
+  display:inline-block;
+  text-decoration:none;
+  transition:transform .2s ease,background .2s ease,color .2s ease,border-color .2s ease,box-shadow .2s ease;
+}
+
+.btn.primary{
+  background:var(--text);
+  color:var(--bg);
+}
+
+.btn.primary:hover{
+  background:var(--accent);
+  border-color:var(--accent);
+}
+
+.btn.ghost{
+  color:var(--text);
+}
+
+.btn.ghost:hover{
+  border-color:var(--accent);
+  color:var(--accent);
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 7px 18px rgba(36,31,26,.12);
+}
+
+.btn:active{
+  transform:translateY(-1px);
+}
+
+.portrait-frame{
+  width:100%;
+  aspect-ratio:4/5;
+  background:var(--surface);
+  border:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  position:relative;
+  opacity:0;
+  transform:translateY(20px) scale(.96);
+  animation:portraitIn .9s ease .25s forwards;
+}
+
+.portrait-frame img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .5s ease;
+}
+
+.portrait-frame:hover img{
+  transform:scale(1.05);
+}
+
+.portrait-fallback{
+  font-family:var(--serif);
+  font-size:40px;
+  color:var(--text-dimmer);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  height:100%;
+}
+
+.portrait-caption{
+  font-size:11px;
+  color:var(--text-dimmer);
+  text-align:center;
+  margin-top:8px;
+}
+
+@keyframes portraitIn{
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+section{
+  padding:72px 0;
+  scroll-margin-top:85px;
+}
+
+.sec-title{
+  font-family:var(--serif);
+  font-size:clamp(24px,3vw,32px);
+  font-weight:600;
+  margin:6px 0 30px;
+}
+
+.sec-lead{
+  color:var(--text-dim);
+  max-width:560px;
+  margin-bottom:8px;
+  font-size:15px;
+}
+
+.sec-lead em{
+  color:var(--text-dimmer);
+  font-style:italic;
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(25px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+
+.reveal.in{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:48px;
+}
+
+.about-text p{
+  color:var(--text-dim);
+  margin-bottom:16px;
+  font-size:15.5px;
+}
+
+.about-text strong{
+  color:var(--text);
+  font-weight:600;
+}
+
+.fact-list{
+  display:flex;
+  flex-direction:column;
+}
+
+.fact{
+  display:flex;
+  justify-content:space-between;
+  padding:16px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.fact:first-child{
+  border-top:1px solid var(--border);
+}
+
+.fact-label{
+  font-size:12.5px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--text-dimmer);
+}
+
+.fact-value{
+  font-family:var(--serif);
+  font-size:16px;
+  font-weight:500;
+  text-align:right;
+}
+
+.skill-groups{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:34px 40px;
+}
+
+.skill-group h3{
+  font-family:var(--serif);
+  font-size:16px;
+  font-weight:600;
+  margin-bottom:12px;
+  color:var(--accent);
+}
+
+.tag-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.tag{
+  font-size:12.5px;
+  color:var(--text);
+  background:var(--surface);
+  border:1px solid var(--border);
+  padding:6px 13px;
+  border-radius:2px;
+  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
+}
+
+.tag:hover{
+  transform:translateY(-4px);
+  border-color:var(--accent);
+  box-shadow:0 5px 12px rgba(36,31,26,.08);
+}
+
+.cert-list{
+  display:flex;
+  flex-direction:column;
+}
+
+.cert-row{
+  display:grid;
+  grid-template-columns:1fr auto auto;
+  gap:18px;
+  align-items:center;
+  padding:20px 0;
+  border-bottom:1px solid var(--border);
+  transition:padding-left .25s ease,background .25s ease;
+}
+
+.cert-row:first-child{
+  border-top:1px solid var(--border);
+}
+
+.cert-row:hover{
+  padding-left:10px;
+  background:rgba(241,226,218,.25);
+}
+
+.cert-name{
+  font-family:var(--serif);
+  font-size:17px;
+  font-weight:500;
+}
+
+.cert-issuer{
+  color:var(--text-dim);
+  font-size:13.5px;
+  margin-top:2px;
+}
+
+.cert-date{
+  font-size:12.5px;
+  color:var(--text-dimmer);
+  white-space:nowrap;
+}
+
+.cert-link{
+  font-size:12.5px;
+  color:var(--accent);
+  border-bottom:1px solid transparent;
+  white-space:nowrap;
+  transition:color .2s ease,border-color .2s ease;
+}
+
+.cert-link:hover{
+  border-color:var(--accent);
+}
+
+.proj-list{
+  display:flex;
+  flex-direction:column;
+  gap:0;
+}
+
+.proj-item{
+  padding:28px 0;
+  border-bottom:1px solid var(--border);
+  display:grid;
+  grid-template-columns:90px 1fr;
+  gap:24px;
+  transition:transform .25s ease,padding-left .25s ease;
+}
+
+.proj-item:first-child{
+  border-top:1px solid var(--border);
+}
+
+.proj-item:hover{
+  transform:translateX(6px);
+  padding-left:8px;
+}
+
+.proj-index{
+  font-family:var(--serif);
+  font-size:30px;
+  color:var(--border);
+  font-weight:600;
+  transition:color .25s ease,transform .25s ease;
+}
+
+.proj-item:hover .proj-index{
+  color:var(--accent);
+  transform:scale(1.08);
+}
+
+.proj-name{
+  font-family:var(--serif);
+  font-size:19px;
+  font-weight:600;
+  margin-bottom:6px;
+}
+
+.proj-desc{
+  color:var(--text-dim);
+  font-size:14.5px;
+  margin-bottom:10px;
+  max-width:560px;
+}
+
+.proj-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.proj-tags span{
+  font-size:11.5px;
+  color:var(--text-dimmer);
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+
+.proj-tags span:not(:last-child)::after{
+  content:'·';
+  margin-left:8px;
+  color:var(--border);
+}
+
+.timeline{
+  position:relative;
+  padding-left:28px;
+}
+
+.timeline::before{
+  content:'';
+  position:absolute;
+  left:4px;
+  top:6px;
+  bottom:6px;
+  width:1px;
+  background:var(--border);
+}
+
+.tl-item{
+  position:relative;
+  padding-bottom:36px;
+  opacity:0;
+  transform:translateX(-15px);
+}
+
+.tl-item:last-child{
+  padding-bottom:0;
+}
+
+.tl-item::before{
+  content:'';
+  position:absolute;
+  left:-28px;
+  top:5px;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:var(--bg);
+  border:2px solid var(--accent);
+  transition:transform .25s ease,background .25s ease;
+}
+
+.tl-item.now::before{
+  background:var(--accent);
+}
+
+.tl-item:hover::before{
+  transform:scale(1.5);
+  background:var(--accent);
+}
+
+.reveal.in .tl-item{
+  animation:timelineIn .6s ease forwards;
+}
+
+.reveal.in .tl-item:nth-child(1){
+  animation-delay:.1s;
+}
+
+.reveal.in .tl-item:nth-child(2){
+  animation-delay:.25s;
+}
+
+.reveal.in .tl-item:nth-child(3){
+  animation-delay:.4s;
+}
+
+.reveal.in .tl-item:nth-child(4){
+  animation-delay:.55s;
+}
+
+@keyframes timelineIn{
+  to{
+    opacity:1;
+    transform:translateX(0);
+  }
+}
+
+.tl-date{
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--text-dimmer);
+  margin-bottom:4px;
+}
+
+.tl-title{
+  font-family:var(--serif);
+  font-size:17px;
+  font-weight:600;
+  margin-bottom:3px;
+}
+
+.tl-org{
+  color:var(--text-dim);
+  font-size:14px;
+}
+
+.contact{
+  text-align:center;
+}
+
+.contact h2{
+  font-family:var(--serif);
+  font-size:clamp(28px,4vw,40px);
+  margin:10px 0 16px;
+  font-weight:600;
+  transition:color .25s ease;
+}
+
+.contact h2:hover{
+  color:var(--accent);
+}
+
+.contact p{
+  color:var(--text-dim);
+  max-width:460px;
+  margin:0 auto 32px;
+}
+
+.contact-links{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+footer{
+  padding:34px 0 60px;
+  text-align:center;
+}
+
+footer p{
+  font-size:12px;
+  color:var(--text-dimmer);
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes fadeDown{
+  from{
+    opacity:0;
+    transform:translateY(-15px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@media (max-width:700px){
+  .about-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media (max-width:640px){
+  .nav-inner{
+    flex-direction:column;
+    gap:15px;
+  }
+
+  .nav-links{
+    gap:14px;
+    font-size:12px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .hero-grid{
+    grid-template-columns:1fr;
+  }
+
+  .portrait-frame{
+    max-width:180px;
+    margin:20px auto 0;
+  }
+}
+
+@media (max-width:600px){
+  .skill-groups{
+    grid-template-columns:1fr;
+  }
+
+  .proj-item{
+    grid-template-columns:1fr;
+    gap:8px;
+  }
+
+  .cert-row{
+    grid-template-columns:1fr;
+    gap:6px;
+  }
+
+  .cert-date{
+    margin-top:4px;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{
+    scroll-behavior:auto;
+  }
+
+  *,
+  *::before,
+  *::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand">Vidarshana Basnayaka</div>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#certificates">Certificates</a>
+      <a href="#projects">Projects</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="num">Computer Science Undergraduate · KDU</span>
+        <h1>
+            Hi, I'm <em>Vidarshana.</em>
+        </h1>
+
+        <p>
+            Computer Science undergraduate and aspiring Software Engineer,
+            passionate about building software, learning new technologies,
+            and solving real-world problems through code.
+        </p>
+
+        <div class="hero-ctas">
+            <a class="btn primary" href="#projects">View my projects</a>
+            <a class="btn ghost" href="#contact">Get in touch</a>
+            <a class="btn ghost" href="Image/CV.pdf" target="_blank">
+                Download CV
+            </a>
+        </div>
+    </div>
+
+    <div>
+      <div class="portrait-frame">
+        <img id="avatar" src="Image/image.jpg" alt="Photo of Vidarshana Basnayaka" onerror="this.style.display='none';document.getElementById('avatar-fallback').style.display='flex';">
+        <div id="avatar-fallback" class="portrait-fallback" style="display:none;">VB</div>
+      </div>
+      <p class="portrait-caption">Vidarshana Basnayaka</p>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="about">
+  <div class="wrap reveal">
+
+    <span class="num">01 — About</span>
+    <h2 class="sec-title">About Me</h2>
+
+    <div class="about-grid">
+
+      <div class="about-text">
+
+        <p>
+          I'm a <strong>Computer Science undergraduate</strong> at
+          <strong>General Sir John Kotelawala Defence University (KDU)</strong>,
+          with a strong interest in software engineering and web development.
+        </p>
+
+        <p>
+          I'm currently developing my skills in
+          <strong>Java, Python, C++, JavaScript, databases, and
+          object-oriented programming</strong> through academic and personal
+          projects.
+        </p>
+
+        <p>
+          I'm always looking for opportunities to apply what I learn,
+          work on meaningful projects, and gain practical experience
+          in the software industry.
+        </p>
+
+      </div>
+
+      <div class="fact-list">
+
+        <div class="fact">
+          <span class="fact-label">Degree</span>
+          <span class="fact-value">BSc (Hons) Computer Science</span>
+        </div>
+
+        <div class="fact">
+          <span class="fact-label">University</span>
+          <span class="fact-value">KDU</span>
+        </div>
+
+        <div class="fact">
+          <span class="fact-label">Year</span>
+          <span class="fact-value">1st Year</span>
+        </div>
+
+        <div class="fact">
+          <span class="fact-label">Semester</span>
+          <span class="fact-value">2nd Semester</span>
+        </div>
+
+        <div class="fact">
+          <span class="fact-label">Focus</span>
+          <span class="fact-value">Software Engineering</span>
+        </div>
+
+        <div class="fact">
+          <span class="fact-label">Based in</span>
+          <span class="fact-value">Sri Lanka</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="skills">
+  <div class="wrap reveal">
+
+    <span class="num">02 — Skills</span>
+    <h2 class="sec-title">Technical Skills</h2>
+
+    <p class="sec-lead" style="margin-bottom:30px;">
+      <em>Technologies and concepts I'm currently learning and developing through academic and personal projects.</em>
+    </p>
+
+    <div class="skill-groups">
+
+      <div class="skill-group">
+        <h3>Programming Languages</h3>
+        <div class="tag-row">
+          <span class="tag">Java</span>
+          <span class="tag">Python</span>
+          <span class="tag">C++</span>
+          <span class="tag">JavaScript</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3>Web Development</h3>
+        <div class="tag-row">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">PHP</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3>Database</h3>
+        <div class="tag-row">
+          <span class="tag">MySQL</span>
+          <span class="tag">SQL</span>
+          <span class="tag">MySQL Workbench</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3>Concepts</h3>
+        <div class="tag-row">
+          <span class="tag">Object-Oriented Programming</span>
+          <span class="tag">Data Structures</span>
+          <span class="tag">Algorithms</span>
+          <span class="tag">Database Design</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3>Development Tools</h3>
+        <div class="tag-row">
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">VS Code</span>
+          <span class="tag">NetBeans</span>
+          <span class="tag">Code::Blocks</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3>Currently Learning</h3>
+        <div class="tag-row">
+          <span class="tag">Web Development</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Git &amp; GitHub</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="certificates">
+  <div class="wrap reveal">
+    <span class="num">03 — Certificates</span>
+    <h2 class="sec-title">Credentials &amp; courses</h2>
+    <p class="sec-lead" style="margin-bottom:12px;"><em>Certificates and courses I have completed.</em></p>
+
+    <div class="cert-list">
+      <div class="cert-row">
+        <div>
+          <div class="cert-name">Python for Beginners</div>
+          <div class="cert-issuer">University of Moratuwa — DP Education</div>
+          <div class="cert-issuer"><i>Verification code: jdLz6DyCWD</i></div>
+        </div>
+        <span class="cert-date">Completed: 2026</span>
+        <a class="cert-link" href="https://open.uom.lk/verify" target="_blank">View →</a>
+      </div>
+
+      <div class="cert-row">
+        <div>
+          <div class="cert-name">Web Design for Beginners</div>
+          <div class="cert-issuer">University of Moratuwa — DP Education</div>
+          <div class="cert-issuer"><i>Verification code: W6oVMUEH2L</i></div>
+        </div>
+        <span class="cert-date">Completed: 2026</span>
+        <a class="cert-link" href="https://open.uom.lk/verify" target="_blank">View →</a>
+      </div>
+
+      <div class="cert-row">
+        <div>
+          <div class="cert-name">Introduction to HTML</div>
+          <div class="cert-issuer">Simplilearn</div>
+        </div>
+        <span class="cert-date">Completed: 2026</span>
+        <a class="cert-link" href="https://simpli-web.app.link/e/uQeNgR3IW5b" target="_blank">View →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="projects">
+  <div class="wrap reveal">
+    <span class="num">04 — Projects</span>
+    <h2 class="sec-title">Early work</h2>
+    <p class="sec-lead" style="margin-bottom:8px;"><em>A selection of academic and personal projects.</em></p>
+
+    <div class="proj-list">
+      <div class="proj-item">
+        <span class="proj-index">01</span>
+
+        <div>
+          <div class="proj-name">Password Based Door Lock System with RFID Integration</div>
+          <p class="proj-desc">A smart security system that combines password authentication with RFID card verification to provide controlled access to a door.</p>
+
+          <div class="proj-tags">
+            <span>ESP32</span>
+            <span>RFID</span>
+            <span>Keypad</span>
+            <span>Ultrasonic</span>
+            <span>LCD</span>
+            <span>Relay</span>
+            <span>C++/Arduino</span>
+          </div>
+          <br>
+
+          <div class="project-links">
+            <a
+              id="cert-link"
+              href="https://github.com/vidarshanabasnayaka023/password-based-door-lock-rfid"
+              target="_blank"
+              rel="noopener noreferrer">
+              <h5>View →</h5>
+            </a>
+
+</div>
+        </div>
+      </div>
+
+      <div class="proj-item">
+        <span class="proj-index">02</span>
+
+        <div>
+          <div class="proj-name">Personal Portfolio Website</div>
+          <p class="proj-desc">A responsive personal portfolio website designed to showcase my skills, projects, education, and certificates in a simple and professional way.</p>
+
+          <div class="proj-tags">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="timeline">
+  <div class="wrap reveal">
+    <span class="num">05 — Timeline</span>
+    <h2 class="sec-title">How I got here</h2>
+    <p class="sec-lead" style="margin-bottom:30px;"><em>A brief journey through my education and development.</em></p>
+
+    <div class="timeline">
+      <div class="tl-item now">
+        <div class="tl-date">Present</div>
+        <div class="tl-title">Started BSc(Hons) in Computer Science</div>
+        <div class="tl-org">General Sir John Kotelawala Defence University (KDU) · First year, first line of real code</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">2023</div>
+        <div class="tl-title">Completed G.C.E. Advanced Level Examination</div>
+        <div class="tl-org">Completed A/L studies in 2023 · Sri Lanka</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">2020</div>
+        <div class="tl-title">Completed G.C.E. Ordinary Level Examination</div>
+        <div class="tl-org">Completed O/L studies in 2020 · Sri Lanka</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="contact" class="contact">
+  <div class="wrap reveal">
+    <span class="num">06 — Contact</span>
+    <h2>Let's talk</h2>
+    <p>I'm always happy to talk about internships, collaborations, or interesting problems. Reach out — I usually reply within a day or two.</p>
+
+    <div class="contact-links">
+      <a class="btn primary" href="mailto:vidarshanabasnayaka023@gmail.com">Email me</a>
+      <a class="btn ghost" href="https://github.com/vidarshanabasnayaka023" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/vidarshana-basnayaka-3298b13a6" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>Built by Vidarshana Basnayaka — last updated <span id="date"></span></p>
+</footer>
+
+<script>
+document.getElementById('date').textContent=new Date().toLocaleDateString('en-US',{
+  year:'numeric',
+  month:'short',
+  day:'numeric'
+});
+
+const revealEls=document.querySelectorAll('.reveal');
+
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach((entry)=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('in');
+      io.unobserve(entry.target);
+    }
+  });
+},{threshold:.12});
+
+revealEls.forEach((element)=>io.observe(element));
+</script>
+
+</body>
+</html>
